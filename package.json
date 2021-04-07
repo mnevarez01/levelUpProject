@@ -1,26 +1,31 @@
 {
-  "name": "googlebooks-app",
+  "name": "mern",
   "version": "1.0.0",
-  "description": "",
-  "main": "server/server.js",
+  "description": "Historical App for Denver, Colorado",
+  "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "heroku-postbuild": "cd client && npm run build"
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@work.github.com:arosenkranz/googlebooks-app.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "if-env": "^1.0.4"
-  },
   "devDependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.10.0",
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.3.16",
+    "react": "^16.13.1",
+    "react-horizontal-timeline": "^1.5.3"
   }
 }
